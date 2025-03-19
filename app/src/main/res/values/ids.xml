@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btnMediaPlayer" type="id" />
+    <item name="btnMediaEffects" type="id" />
+    <item name="btnRecordMedia" type="id" />
+    <item name="btnPreviewVideo" type="id" />
+    <item name="btnCameraControl" type="id" />
+    <item name="videoView" type="id" />
+    <item name="audioControls" type="id" />
+    <item name="videoControls" type="id" />
+    <item name="statusText" type="id" />
+    <item name="btnPlayAudio" type="id" />
+    <item name="btnPauseAudio" type="id" />
+    <item name="btnStopAudio" type="id" />
+    <item name="btnPlayVideo" type="id" />
+    <item name="btnSwitchToAudio" type="id" />
+    <item name="btnSwitchToVideo" type="id" />
+    <item name="btnPlayMedia" type="id" />
+    <item name="btnPauseMedia" type="id" />
+    <item name="btnResetEffects" type="id" />
+    <item name="textureView" type="id" />
+    <item name="videoSectionTitle" type="id" />
+    <item name="btnPauseVideo" type="id" />
+    <item name="videoControlsLayout" type="id" />
+    <item name="videoStatus" type="id" />
+    <item name="audioControlsLayout" type="id" />
+    <item name="audioStatus" type="id" />
+    <item name="audioSectionTitle" type="id" />
+    <item name="effectStatus" type="id" />
+    <item name="videoEffectsTitle" type="id" />
+    <item name="videoEffectsLayout" type="id" />
+    <item name="audioEffectsTitle" type="id" />
+    <item name="audioEffectsLayout" type="id" />
+</resources>

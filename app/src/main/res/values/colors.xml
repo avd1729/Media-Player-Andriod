@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core Colors -->
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="purple_900">#23007E</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="black">#121212</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+
+    <!-- Orange accent -->
+    <color name="orange_500">#FF9800</color>
+    <color name="orange_700">#F57C00</color>
+    <color name="text_hint">#757575</color>
+    <!-- Background & Surface Colors -->
+    <color name="background">#F5F0FF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="light_gray">#E0E0E0</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_disabled">#9E9E9E</color>
+
+    <!-- Functional Colors -->
+    <color name="error">#B00020</color>
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+    <color name="info">#2196F3</color>
+
+    <!-- Button States -->
+    <color name="button_enabled">#6200EE</color>
+    <color name="button_pressed">#3700B3</color>
+    <color name="button_disabled">#1F6200EE</color>
+
+    <!-- Switch States -->
+    <color name="switch_track_on">#7903DAC5</color>
+    <color name="switch_track_off">#1F000000</color>
+    <color name="switch_thumb_on">#03DAC5</color>
+    <color name="switch_thumb_off">#FFFFFF</color>
+
+    <!-- Background Primary (from original theme) -->
+    <color name="background_primary">#F5F0FF</color>
+</resources>
