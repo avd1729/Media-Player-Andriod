@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val btnRecordMedia = findViewById<Button>(R.id.btnRecordMedia)
 
         // ✅ Remove references to non-existent buttons OR add them to XML
-       val btnPreviewVideo = findViewById<Button>(R.id.btnPreviewVideo)
+//       val btnPreviewVideo = findViewById<Button>(R.id.btnPreviewVideo)
          val btnCameraControl = findViewById<Button>(R.id.btnCameraControl)
 
         // Set click listeners to navigate to respective activities
