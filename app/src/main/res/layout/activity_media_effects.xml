@@ -19,7 +19,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Tab layout for switching between audio and video -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -29,7 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleText" />
 
-    <!-- Effects status -->
     <TextView
         android:id="@+id/effectStatus"
         android:layout_width="wrap_content"
@@ -40,7 +38,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabLayout" />
 
-    <!-- Audio section container -->
     <LinearLayout
         android:id="@+id/audioSectionLayout"
         android:layout_width="match_parent"
@@ -52,119 +49,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/audioSectionTitle"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnSelectAudio"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:padding="8dp"
-            android:text="Sample Audio"
-            android:textStyle="bold" />
-
-        <!-- Audio Placeholder ImageView -->
-        <ImageView
-            android:id="@+id/audioPlaceholder"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:contentDescription="Audio Visualization"
-            android:scaleType="centerCrop"
-            android:src="@drawable/audio_placeholder" />
+            android:text="Select Audio File" />
 
         <TextView
             android:id="@+id/audioStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Audio: Loading..."
+            android:text="Audio: No file selected"
             android:layout_gravity="center_horizontal" />
 
         <LinearLayout
-            android:id="@+id/audioControlsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/btnPlayAudio"
-                android:layout_width="93dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Play Audio" />
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:text="Play" />
 
             <Button
                 android:id="@+id/btnPauseAudio"
-                android:layout_width="98dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Pause Audio" />
+                android:text="Pause" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnResetAudioEffects"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Reset Audio Effects"
-            android:layout_gravity="center_horizontal" />
-
-        <!-- Audio effects section -->
-        <ScrollView
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
+            android:layout_height="wrap_content"
+            android:text="Bass Boost:"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+        <SeekBar
+            android:id="@+id/bassBoostBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"/>
 
-                <TextView
-                    android:id="@+id/audioEffectsTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Audio Effects"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Treble Boost:"
+            android:layout_marginStart="16dp"/>
 
-                <LinearLayout
-                    android:id="@+id/audioEffectsLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:layout_marginBottom="16dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Bass Boost:" />
-                    <SeekBar
-                        android:id="@+id/bassBoostBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Treble Boost:" />
-                    <SeekBar
-                        android:id="@+id/trebleBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
+        <SeekBar
+            android:id="@+id/trebleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"/>
     </LinearLayout>
 
-    <!-- Video section container -->
     <LinearLayout
         android:id="@+id/videoSectionLayout"
         android:layout_width="match_parent"
@@ -176,113 +121,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/videoSectionTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:padding="8dp"
-            android:text="Sample Video"
-            android:textStyle="bold" />
-
-        <!-- Video player view -->
         <TextureView
             android:id="@+id/textureView"
             android:layout_width="match_parent"
-            android:layout_height="180dp" />
+            android:layout_height="250dp" />
+
+        <Button
+            android:id="@+id/btnSelectVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="Select Video File" />
 
         <TextView
             android:id="@+id/videoStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Video: Loading..."
+            android:layout_marginTop="8dp"
+            android:text="Video: No file selected"
             android:layout_gravity="center_horizontal" />
 
         <LinearLayout
-            android:id="@+id/videoControlsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/btnPlayVideo"
-                android:layout_width="93dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Play Video" />
-
-            <Space
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:text="Play" />
 
             <Button
                 android:id="@+id/btnPauseVideo"
-                android:layout_width="98dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Pause Video" />
+                android:text="Pause" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnResetVideoEffects"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Reset Video Effects"
-            android:layout_gravity="center_horizontal" />
-
-        <!-- Video effects section -->
-        <ScrollView
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
+            android:layout_height="wrap_content"
+            android:text="Brightness:"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+        <SeekBar
+            android:id="@+id/brightnessBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"/>
 
-                <TextView
-                    android:id="@+id/videoEffectsTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Video Effects"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contrast:"
+            android:layout_marginStart="16dp"/>
 
-                <LinearLayout
-                    android:id="@+id/videoEffectsLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Brightness:" />
-                    <SeekBar
-                        android:id="@+id/brightnessBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Contrast:" />
-                    <SeekBar
-                        android:id="@+id/contrastBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
+        <SeekBar
+            android:id="@+id/contrastBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"/>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
