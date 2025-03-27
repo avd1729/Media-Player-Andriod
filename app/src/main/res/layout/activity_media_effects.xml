@@ -116,15 +116,15 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/effectStatus"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/effectStatus">
 
         <TextureView
             android:id="@+id/textureView"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="258dp" />
 
         <Button
             android:id="@+id/btnSelectVideo"
@@ -138,25 +138,25 @@
             android:id="@+id/videoStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="Video: No file selected"
-            android:layout_gravity="center_horizontal" />
+            android:text="Video: No file selected" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnPlayVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="151dp"
+                android:layout_height="match_parent"
                 android:text="Play" />
 
             <Button
                 android:id="@+id/btnPauseVideo"
-                android:layout_width="wrap_content"
+                android:layout_width="146dp"
                 android:layout_height="wrap_content"
                 android:text="Pause" />
         </LinearLayout>
@@ -164,26 +164,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Brightness:"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"/>
+            android:text="Brightness:" />
 
         <SeekBar
             android:id="@+id/brightnessBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"/>
+            android:layout_marginHorizontal="16dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contrast:"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:text="Contrast:" />
 
         <SeekBar
             android:id="@+id/contrastBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"/>
+            android:layout_marginHorizontal="16dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
