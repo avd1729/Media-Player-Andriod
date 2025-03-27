@@ -69,6 +69,13 @@
             android:layout_marginTop="16dp">
 
             <Button
+                android:id="@+id/btnSelectAudio"
+                android:layout_width="94dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Select Audio" />
+
+            <Button
                 android:id="@+id/btnPlayAudio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,15 +105,17 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+        <Button
+            android:id="@+id/btnSelectVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Video"
+            android:layout_marginBottom="16dp"/>
 
         <Button
             android:id="@+id/btnPlayVideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Play Video"
-            android:layout_marginTop="16dp"/>
+            android:text="Play Video"/>
     </LinearLayout>
-
-
-
 </LinearLayout>
