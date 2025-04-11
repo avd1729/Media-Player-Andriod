@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
@@ -26,6 +27,9 @@ class MediaPlayerActivity : AppCompatActivity() {
     private lateinit var statusText: TextView
     private lateinit var tabLayout: TabLayout
 
+    private var audioUri: Uri? = null
+    private var videoUri: Uri? = null
+
     companion object {
         private const val PICK_AUDIO_REQUEST = 1
         private const val PICK_VIDEO_REQUEST = 2
@@ -43,41 +47,28 @@ class MediaPlayerActivity : AppCompatActivity() {
         statusText = findViewById(R.id.statusText)
         tabLayout = findViewById(R.id.tabLayout)
 
-        // Initialize MediaPlayer for audio
+        // MediaPlayer for audio
         mediaPlayer = MediaPlayer()
 
-        // Setup Tab Layout
         setupTabs()
 
         // Audio Buttons
-        val btnSelectAudio = findViewById<Button>(R.id.btnSelectAudio)
-        val btnPlayAudio = findViewById<Button>(R.id.btnPlayAudio)
-        val btnPauseAudio = findViewById<Button>(R.id.btnPauseAudio)
-        val btnStopAudio = findViewById<Button>(R.id.btnStopAudio)
-
-        btnSelectAudio.setOnClickListener { requestPermissionAndPickAudio() }
-        btnPlayAudio.setOnClickListener { playAudio() }
-        btnPauseAudio.setOnClickListener { pauseAudio() }
-        btnStopAudio.setOnClickListener { stopAudio() }
+        findViewById<Button>(R.id.btnSelectAudio).setOnClickListener { checkAndRequestPermission("audio") }
+        findViewById<Button>(R.id.btnPlayAudio).setOnClickListener { playAudio() }
+        findViewById<Button>(R.id.btnPauseAudio).setOnClickListener { pauseAudio() }
+        findViewById<Button>(R.id.btnStopAudio).setOnClickListener { stopAudio() }
 
         // Video Buttons
-        val btnSelectVideo = findViewById<Button>(R.id.btnSelectVideo)
-        val btnPlayVideo = findViewById<Button>(R.id.btnPlayVideo)
+        findViewById<Button>(R.id.btnSelectVideo).setOnClickListener { checkAndRequestPermission("video") }
+        findViewById<Button>(R.id.btnPlayVideo).setOnClickListener { playVideo() }
 
-        btnSelectVideo.setOnClickListener { requestPermissionAndPickVideo() }
-        btnPlayVideo.setOnClickListener { playVideo() }
-
-        // Default to audio mode
         showAudioTab()
     }
 
     private fun setupTabs() {
-        // Add Audio Tab
         tabLayout.addTab(tabLayout.newTab().setText("Audio"))
-        // Add Video Tab
         tabLayout.addTab(tabLayout.newTab().setText("Video"))
 
-        // Add tab selection listener
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
@@ -109,69 +100,57 @@ class MediaPlayerActivity : AppCompatActivity() {
         statusText.text = "Video Mode"
     }
 
-    private fun requestPermissionAndPickAudio() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                PICK_AUDIO_REQUEST
-            )
-        } else {
-            pickAudioFile()
+    private fun checkAndRequestPermission(type: String) {
+        val permission = when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && type == "audio" ->
+                Manifest.permission.READ_MEDIA_AUDIO
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && type == "video" ->
+                Manifest.permission.READ_MEDIA_VIDEO
+            else -> Manifest.permission.READ_EXTERNAL_STORAGE
         }
-    }
 
-    private fun requestPermissionAndPickVideo() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                PICK_VIDEO_REQUEST
-            )
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(permission), PERMISSION_REQUEST_CODE)
         } else {
-            pickVideoFile()
+            if (type == "audio") pickAudioFile() else pickVideoFile()
         }
     }
 
     private fun pickAudioFile() {
-        val intent = Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-        )
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "audio/*"
+        }
         startActivityForResult(intent, PICK_AUDIO_REQUEST)
     }
 
     private fun pickVideoFile() {
-        val intent = Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-        )
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "video/*"
+        }
         startActivityForResult(intent, PICK_VIDEO_REQUEST)
     }
 
-    private var audioUri: Uri? = null
-    private var videoUri: Uri? = null
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK && data?.data != null) {
             when (requestCode) {
                 PICK_AUDIO_REQUEST -> {
-                    audioUri = data?.data
+                    audioUri = data.data
+                    contentResolver.takePersistableUriPermission(
+                        audioUri!!,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
                     statusText.text = "Audio Selected"
                     Toast.makeText(this, "Audio file selected", Toast.LENGTH_SHORT).show()
                 }
                 PICK_VIDEO_REQUEST -> {
-                    videoUri = data?.data
+                    videoUri = data.data
+                    contentResolver.takePersistableUriPermission(
+                        videoUri!!,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
                     statusText.text = "Video Selected"
                     Toast.makeText(this, "Video file selected", Toast.LENGTH_SHORT).show()
                 }
@@ -185,12 +164,11 @@ class MediaPlayerActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            when (requestCode) {
-                PICK_AUDIO_REQUEST -> pickAudioFile()
-                PICK_VIDEO_REQUEST -> pickVideoFile()
-            }
+        if (requestCode == PERMISSION_REQUEST_CODE && grantResults.isNotEmpty() &&
+            grantResults[0] == PackageManager.PERMISSION_GRANTED
+        ) {
+            if (tabLayout.selectedTabPosition == 0) pickAudioFile()
+            else pickVideoFile()
         } else {
             Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
         }
@@ -229,19 +207,15 @@ class MediaPlayerActivity : AppCompatActivity() {
     private fun playVideo() {
         videoUri?.let { uri ->
             try {
-                // Set up media controller
                 val mediaController = MediaController(this)
                 videoView.setMediaController(mediaController)
                 mediaController.setAnchorView(videoView)
 
-                // Set video URI and start
                 videoView.setVideoURI(uri)
                 videoView.requestFocus()
                 videoView.start()
 
                 statusText.text = "Playing Video"
-
-                // Set completion listener
                 videoView.setOnCompletionListener {
                     statusText.text = "Video Playback Completed"
                 }

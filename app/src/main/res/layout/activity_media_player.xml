@@ -115,11 +115,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select Video"
+            android:backgroundTint="@color/info"
             android:layout_marginBottom="16dp"/>
 
         <Button
             android:id="@+id/btnPlayVideo"
             android:layout_width="match_parent"
+            android:backgroundTint="@color/info"
             android:layout_height="wrap_content"
             android:text="Play Video"/>
     </LinearLayout>
