@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleText" />
@@ -44,6 +45,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:visibility="gone"
+        android:backgroundTint="@color/info"
         app:layout_constraintTop_toBottomOf="@id/effectStatus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
+            android:backgroundTint="@color/info"
             android:text="Select Audio File" />
 
         <TextView
@@ -75,12 +78,14 @@
                 android:id="@+id/btnPlayAudio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/info"
                 android:text="Play" />
 
             <Button
                 android:id="@+id/btnPauseAudio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/info"
                 android:text="Pause" />
         </LinearLayout>
 
@@ -132,6 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
+            android:backgroundTint="@color/info"
             android:text="Select Video File" />
 
         <TextView
@@ -150,14 +156,16 @@
 
             <Button
                 android:id="@+id/btnPlayVideo"
-                android:layout_width="151dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
+                android:backgroundTint="@color/info"
                 android:text="Play" />
 
             <Button
                 android:id="@+id/btnPauseVideo"
                 android:layout_width="146dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/info"
                 android:text="Pause" />
         </LinearLayout>
 

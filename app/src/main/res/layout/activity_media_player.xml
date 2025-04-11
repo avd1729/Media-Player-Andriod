@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         app:tabMode="fixed"
         app:tabGravity="fill"
+        android:backgroundTint="@color/info"
         app:tabTextColor="@android:color/white"
         app:tabSelectedTextColor="@android:color/white"
         app:tabIndicatorColor="@android:color/white"
@@ -73,6 +74,7 @@
                 android:layout_width="94dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/info"
                 android:text="Select Audio" />
 
             <Button
@@ -80,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Play"
+                android:backgroundTint="@color/info"
                 android:layout_marginEnd="8dp"/>
 
             <Button
@@ -87,12 +90,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pause"
+                android:backgroundTint="@color/info"
                 android:layout_marginEnd="8dp"/>
 
             <Button
                 android:id="@+id/btnStopAudio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/info"
                 android:text="Stop"/>
         </LinearLayout>
     </LinearLayout>

@@ -48,6 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/info"
             android:layout_weight="1"
             android:text="Capture" />
 
@@ -55,6 +56,7 @@
             android:id="@+id/btnSwitchCamera"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/info"
             android:layout_weight="1"
             android:text="Switch Camera" />
     </LinearLayout>
