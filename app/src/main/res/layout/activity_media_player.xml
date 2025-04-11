@@ -67,39 +67,45 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:weightSum="4">
 
             <Button
                 android:id="@+id/btnSelectAudio"
-                android:layout_width="94dp"
+                android:layout_width="29dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
                 android:backgroundTint="@color/info"
                 android:text="Select Audio" />
 
             <Button
                 android:id="@+id/btnPlayAudio"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
                 android:text="Play"
-                android:backgroundTint="@color/info"
-                android:layout_marginEnd="8dp"/>
+                android:backgroundTint="@color/info"/>
 
             <Button
                 android:id="@+id/btnPauseAudio"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
                 android:text="Pause"
-                android:backgroundTint="@color/info"
-                android:layout_marginEnd="8dp"/>
+                android:backgroundTint="@color/info"/>
 
             <Button
                 android:id="@+id/btnStopAudio"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/info"
-                android:text="Stop"/>
+                android:text="Stop"
+                android:backgroundTint="@color/info"/>
         </LinearLayout>
+
     </LinearLayout>
 
     <!-- Video Controls -->
